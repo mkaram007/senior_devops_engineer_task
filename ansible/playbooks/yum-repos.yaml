@@ -1,4 +1,4 @@
-- hosts: myhost
+- hosts: all
   tasks:
     - name: Ensure Local BaseOS Repo exists
       ansible.builtin.yum_repository:

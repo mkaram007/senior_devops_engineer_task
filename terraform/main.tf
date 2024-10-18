@@ -13,7 +13,7 @@ resource "virtualbox_vm" "node" {
   name      = format("node-%02d", count.index + 1)
   image = "http://localhost:8080/RHEL9.box"
   cpus      = 2
-  memory    = "512 mib"
+  memory    = "4 gib"
 
   network_adapter {
     type           = "bridged"
