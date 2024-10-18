@@ -1,11 +1,31 @@
 - hosts: myhost
   tasks:
-    - name: Ensure Example Repo exists
+    - name: Ensure Local BaseOS Repo exists
       ansible.builtin.yum_repository:
-        file: example
-        name: example-internal
+        file: local
+        name: Local-BaseOS
         description: Example Inc. Internal YUM/DNF repo
-        baseurl: /mnt/AppStream
+        baseurl: http://192.168.252.19:8080/rhel-files/BaseOS/
         enabled: yes
         gpgcheck: yes
         state: present
+    - name: Ensure Local AppStream Repo exists
+      ansible.builtin.yum_repository:
+        file: local
+        name: Local-AppStream
+        description: Example Inc. Internal YUM/DNF repo
+        baseurl: http://192.168.252.19:8080/rhel-files/AppStream/
+        enabled: yes
+        gpgcheck: yes
+        state: present
+    - name: Ensure Non-Existent Epel configuration
+      ansible.builtin.find:
+        path: '/etc/yum.repos.d/'
+        patterns: 'epel*'
+        use_regex: yes
+      register: found_files
+    - name: delete files
+      ansible.builtin.file:
+        path: '{{ item.path }}'
+        state: absent
+      with_items: '{{ found_files.files }}'
