@@ -1,0 +1,6 @@
+**/.venv
+**/.terraform**
+terraform/rhel9*
+terraform/releases
+terraform/ee6ce*
+terraform/*.box

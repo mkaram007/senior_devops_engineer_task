@@ -1,0 +1,11 @@
+- hosts: myhost
+  tasks:
+    - name: Ensure Example Repo exists
+      ansible.builtin.yum_repository:
+        file: example
+        name: example-internal
+        description: Example Inc. Internal YUM/DNF repo
+        baseurl: /mnt/AppStream
+        enabled: yes
+        gpgcheck: yes
+        state: present
