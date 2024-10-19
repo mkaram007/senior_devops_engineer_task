@@ -1,0 +1,9 @@
+#!/usr/bin/env ansible-playbook
+- hosts: all
+  tasks:
+  - name: Create a consul container
+    community.docker.docker_container:
+      name: consul
+      image: hashicorp/consul:1.20
+      ports:
+        - "8500:8500"
