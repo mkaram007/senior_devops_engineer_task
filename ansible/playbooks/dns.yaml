@@ -1,0 +1,22 @@
+---
+- name: Install and configure named on RHEL
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install named
+      package:
+        name: bind
+        state: present                                                                                                                                                                                                                                    
+    - name: Configure named
+      copy:
+        src: "{{ item }}"
+        dest: /etc/
+      loop:
+        - ../files/forward.devops.com
+        - ../files/reverse.devops.com
+        - ../files/named.conf
+    - name: Start and enable named
+      service:
+        name: named
+        enabled: true
+        state: started
