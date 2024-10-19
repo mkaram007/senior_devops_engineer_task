@@ -4,3 +4,4 @@ terraform/rhel9*
 terraform/releases
 terraform/ee6ce*
 terraform/*.box
+terraform/terraform.tfstate*
