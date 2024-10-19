@@ -1,3 +1,3 @@
 [k8s_cluster_worker_nodes]
-192.168.252.50
-192.168.252.100
+192.168.252.50 new_hostname=worker01
+192.168.252.100 new_hostname=worker02

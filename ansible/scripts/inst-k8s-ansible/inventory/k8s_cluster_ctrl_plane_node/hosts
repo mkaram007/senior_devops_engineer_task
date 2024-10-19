@@ -1,2 +1,2 @@
 [k8s_cluster_ctrl_plane_node]
-192.168.252.10
+192.168.252.10 new_hostname=master-01

@@ -2,6 +2,12 @@
 ##Version : v2.2.6
 - name: Install and configure the kubernetes cluster on linux nodes
   hosts: k8s_cluster_ctrl_plane_node, k8s_cluster_worker_nodes
+  pre_tasks:
+    - name: "update hostnames"
+      hostname:
+        name: "{{ new_hostname }}"
+      become: true
+    - ansible.builtin.gather_facts:
   roles:
     - name: Fetch latest version of software components to be installed from GitHub API
       role: fetch_latest_version_number 

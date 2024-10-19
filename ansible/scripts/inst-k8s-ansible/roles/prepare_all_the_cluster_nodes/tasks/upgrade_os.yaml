@@ -19,7 +19,7 @@
 - name: Upgrade the system packages (Suse based systems)
   become: true
   when: ansible_os_family == "Suse"
-  zypper:
+  community.general.zypper:
     update_cache: true
     name: "*"
     state: latest
