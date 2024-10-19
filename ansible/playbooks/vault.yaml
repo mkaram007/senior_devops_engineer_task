@@ -1,0 +1,16 @@
+---
+- hosts: master
+  vars:
+     helm_chart_url: "https://helm.releases.hashicorp.com"
+  tasks:
+      - name: Add hashicorp helm repo
+        kubernetes.core.helm_repository:
+          name: hashicorp
+          repo_url: "{{ helm_chart_url }}"
+          kubeconfig: /home/vagrant/.kube/config
+      - name: Install Vault Chart
+        kubernetes.core.helm:
+          name: vault
+          namespace: vault
+          chart_ref: hashicorp/vault
+          kubeconfig: /home/vagrant/.kube/config
