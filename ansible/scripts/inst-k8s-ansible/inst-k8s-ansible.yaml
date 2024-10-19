@@ -8,6 +8,11 @@
         name: "{{ new_hostname }}"
       become: true
     - ansible.builtin.gather_facts:
+    - name: Deploy /etc/hosts
+      become: true
+      ansible.builtin.template:
+        src: templates/hosts.j2
+        dest: /etc/hosts
   roles:
     - name: Fetch latest version of software components to be installed from GitHub API
       role: fetch_latest_version_number 
