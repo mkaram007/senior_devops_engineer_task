@@ -5,4 +5,6 @@ terraform/releases
 terraform/ee6ce*
 terraform/*.box
 terraform/terraform.tfstate*
-private_key
+**/logs-inst-k8s-ansible-play-output.txt
+**/ansible_collections
+**/private_key

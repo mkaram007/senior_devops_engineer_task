@@ -1,4 +1,5 @@
 {# Managed by ansible #}
+127.0.0.1 localhost
 {% for host in groups['k8s_cluster_ctrl_plane_node'] + groups['k8s_cluster_worker_nodes'] %}
 {% if 'default_ipv4' in hostvars[host]['ansible_facts'] %}
 {{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }} 
