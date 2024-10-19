@@ -1,0 +1,576 @@
+2024-10-19 09:25:26,349 p=36952 u=vagrant n=ansible | 192.168.252.253 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2024-10-19 09:25:27,626 p=37087 u=vagrant n=ansible | 192.168.252.56 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2024-10-19 09:25:27,635 p=37087 u=vagrant n=ansible | 192.168.252.39 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2024-10-19 09:25:35,050 p=37119 u=vagrant n=ansible | PLAY [Install and configure the kubernetes cluster on linux nodes] ***************************************************************************************************************************************************************************************
+2024-10-19 09:25:35,062 p=37119 u=vagrant n=ansible | TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************************
+2024-10-19 09:25:36,314 p=37119 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:25:36,378 p=37119 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:25:36,393 p=37119 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:25:36,419 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of runc] ******************************************************************************************************************************************************************************
+2024-10-19 09:25:37,421 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:25:37,426 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the runc version to be installed] *****************************************************************************************************************************************************************************
+2024-10-19 09:25:37,447 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of runc is v1.1.15"
+}
+2024-10-19 09:25:37,454 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of containerd] ************************************************************************************************************************************************************************
+2024-10-19 09:25:38,650 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:25:38,657 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the containerd version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:25:38,682 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of containerd is v1.7.23"
+}
+2024-10-19 09:25:38,689 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of kubernetes] ************************************************************************************************************************************************************************
+2024-10-19 09:25:39,447 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:25:39,452 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the kubernetes version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:25:39,468 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of kubernetes is v1.31.1"
+}
+2024-10-19 09:25:39,473 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of calico CNI] ************************************************************************************************************************************************************************
+2024-10-19 09:25:40,273 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:25:40,277 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the calico CNI version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:25:40,297 p=37119 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of calico CNI is v3.28.2"
+}
+2024-10-19 09:25:40,303 p=37119 u=vagrant n=ansible | TASK [fetch_latest_version_number : Set captured version information as global variables for all nodes] **************************************************************************************************************************************************
+2024-10-19 09:25:40,349 p=37119 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:25:40,353 p=37119 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:25:40,360 p=37119 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:25:40,375 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to upgrade the system packages] **********************************************************************************************************************************************************************
+2024-10-19 09:25:40,422 p=37119 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/upgrade_os.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:25:40,432 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (RedHat based systems)] ****************************************************************************************************************************************************************
+2024-10-19 09:25:42,074 p=37119 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:25:42,130 p=37119 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:25:42,188 p=37119 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:25:42,193 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (Debian based systems)] ****************************************************************************************************************************************************************
+2024-10-19 09:25:42,216 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:42,218 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:42,230 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:42,235 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (Suse based systems)] ******************************************************************************************************************************************************************
+2024-10-19 09:25:42,249 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:42,260 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:42,270 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:42,274 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for RedHat systems] *************************************************************************************************************************************************************************
+2024-10-19 09:25:42,317 p=37119 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:25:42,322 p=37119 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:25:42,329 p=37119 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:25:42,334 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for Debian systems] *************************************************************************************************************************************************************************
+2024-10-19 09:25:42,348 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:42,358 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:42,370 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:42,375 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for Suse systems] ***************************************************************************************************************************************************************************
+2024-10-19 09:25:42,388 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:42,398 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:42,409 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:42,414 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Reboot the systems that are upgraded and wait for them to come back online] ****************************************************************************************************************************************
+2024-10-19 09:25:42,458 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:42,458 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:42,478 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:42,483 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to disable swap] *************************************************************************************************************************************************************************************
+2024-10-19 09:25:42,523 p=37119 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/disable_swap.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:25:42,539 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check if swap is enabled] ******************************************************************************************************************************************************************************************
+2024-10-19 09:25:43,245 p=37119 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:25:43,268 p=37119 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:25:43,287 p=37119 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:25:43,293 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Disable swap if it is enabled] *************************************************************************************************************************************************************************************
+2024-10-19 09:25:44,001 p=37119 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:25:44,050 p=37119 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:25:44,066 p=37119 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:25:44,071 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Remove swap entry from /etc/fstab] *********************************************************************************************************************************************************************************
+2024-10-19 09:25:44,813 p=37119 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:25:44,816 p=37119 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:25:44,828 p=37119 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:25:44,832 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify that swap has been disabled and removed from fstab] *********************************************************************************************************************************************************
+2024-10-19 09:25:44,868 p=37119 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "Swap has been disabled and removed from /etc/fstab."
+}
+2024-10-19 09:25:44,877 p=37119 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "Swap has been disabled and removed from /etc/fstab."
+}
+2024-10-19 09:25:44,886 p=37119 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "Swap has been disabled and removed from /etc/fstab."
+}
+2024-10-19 09:25:44,891 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify if swap is already disabled] ********************************************************************************************************************************************************************************
+2024-10-19 09:25:44,917 p=37119 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:25:44,937 p=37119 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:25:44,938 p=37119 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:25:44,943 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to load required kernel modules] *********************************************************************************************************************************************************************
+2024-10-19 09:25:44,985 p=37119 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/load_kernel_modules.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:25:45,001 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Load the required kernel modules] **********************************************************************************************************************************************************************************
+2024-10-19 09:25:45,715 p=37119 u=vagrant n=ansible | ok: [192.168.252.39] => (item=overlay)
+2024-10-19 09:25:45,777 p=37119 u=vagrant n=ansible | ok: [192.168.252.56] => (item=overlay)
+2024-10-19 09:25:45,792 p=37119 u=vagrant n=ansible | ok: [192.168.252.253] => (item=overlay)
+2024-10-19 09:25:46,291 p=37119 u=vagrant n=ansible | changed: [192.168.252.39] => (item=br_netfilter)
+2024-10-19 09:25:46,356 p=37119 u=vagrant n=ansible | changed: [192.168.252.253] => (item=br_netfilter)
+2024-10-19 09:25:46,390 p=37119 u=vagrant n=ansible | changed: [192.168.252.56] => (item=br_netfilter)
+2024-10-19 09:25:46,397 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Create /etc/modules-load.d/k8s.conf for the above loaded modules to be persistent] *********************************************************************************************************************************
+2024-10-19 09:25:47,084 p=37119 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:25:47,113 p=37119 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:25:47,114 p=37119 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:25:47,120 p=37119 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to load required kernel parameters] ******************************************************************************************************************************************************************
+2024-10-19 09:25:47,161 p=37119 u=vagrant n=ansible | ERROR! couldn't resolve module/action 'ansible.posix.sysctl'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/load_kernel_parameters.yaml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+##Version : v2.2.6
+- name: Load the required kernel parameters
+  ^ here
+
+2024-10-19 09:26:06,359 p=38410 u=vagrant n=ansible | Starting galaxy collection install process
+2024-10-19 09:26:06,370 p=38410 u=vagrant n=ansible | Process install dependency map
+2024-10-19 09:26:06,370 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:06,490 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:06,591 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:06,711 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:06,814 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:06,916 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:07,017 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:07,118 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:07,266 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:07,367 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:07,469 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:07,571 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:07,681 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:07,793 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:07,897 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:08,011 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:08,113 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:08,216 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:08,321 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:08,435 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:08,543 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:08,648 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:08,753 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:08,857 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:08,964 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:09,119 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:09,232 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:09,335 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:09,437 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:09,548 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:09,677 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:09,778 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:09,915 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:10,021 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:10,126 p=38410 u=vagrant n=ansible | Starting collection install process
+2024-10-19 09:26:10,127 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:10,138 p=38410 u=vagrant n=ansible | Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/ansible-posix-1.6.1.tar.gz to /home/vagrant/.ansible/tmp/ansible-local-38410vb8svvub/tmpkbstdsg2/ansible-posix-1.6.1-sftnamje
+2024-10-19 09:26:10,242 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:10,344 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:10,445 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:10,553 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:10,664 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:10,768 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:10,868 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:10,970 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:11,071 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:11,174 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:11,278 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:11,379 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:11,481 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:11,587 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:11,690 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:11,791 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:11,896 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:11,997 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:12,135 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:12,236 p=38410 u=vagrant n=ansible | |
+2024-10-19 09:26:12,337 p=38410 u=vagrant n=ansible | /
+2024-10-19 09:26:12,440 p=38410 u=vagrant n=ansible | -
+2024-10-19 09:26:12,540 p=38410 u=vagrant n=ansible | \
+2024-10-19 09:26:12,663 p=38410 u=vagrant n=ansible | Installing 'ansible.posix:1.6.1' to '/home/vagrant/.ansible/collections/ansible_collections/ansible/posix'
+2024-10-19 09:26:12,663 p=38410 u=vagrant n=ansible | ansible.posix:1.6.1 was installed successfully
+2024-10-19 09:26:15,091 p=38414 u=vagrant n=ansible | PLAY [Install and configure the kubernetes cluster on linux nodes] ***************************************************************************************************************************************************************************************
+2024-10-19 09:26:15,105 p=38414 u=vagrant n=ansible | TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************************************************
+2024-10-19 09:26:16,353 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:16,368 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:16,407 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:16,435 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of runc] ******************************************************************************************************************************************************************************
+2024-10-19 09:26:17,476 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:26:17,483 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the runc version to be installed] *****************************************************************************************************************************************************************************
+2024-10-19 09:26:17,501 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of runc is v1.1.15"
+}
+2024-10-19 09:26:17,506 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of containerd] ************************************************************************************************************************************************************************
+2024-10-19 09:26:18,575 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:26:18,580 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the containerd version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:26:18,600 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of containerd is v1.7.23"
+}
+2024-10-19 09:26:18,606 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of kubernetes] ************************************************************************************************************************************************************************
+2024-10-19 09:26:19,437 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:26:19,442 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the kubernetes version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:26:19,459 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of kubernetes is v1.31.1"
+}
+2024-10-19 09:26:19,465 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Get latest version information of calico CNI] ************************************************************************************************************************************************************************
+2024-10-19 09:26:20,406 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)]
+2024-10-19 09:26:20,412 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Notify the calico CNI version to be installed] ***********************************************************************************************************************************************************************
+2024-10-19 09:26:20,432 p=38414 u=vagrant n=ansible | ok: [192.168.252.253 -> local-ansible-control-host(localhost)] => {
+    "msg": "Latest stable version to be installed of calico CNI is v3.28.2"
+}
+2024-10-19 09:26:20,437 p=38414 u=vagrant n=ansible | TASK [fetch_latest_version_number : Set captured version information as global variables for all nodes] **************************************************************************************************************************************************
+2024-10-19 09:26:20,480 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:20,481 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:20,490 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:20,509 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to upgrade the system packages] **********************************************************************************************************************************************************************
+2024-10-19 09:26:20,566 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/upgrade_os.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:26:20,575 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (RedHat based systems)] ****************************************************************************************************************************************************************
+2024-10-19 09:26:22,231 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:22,234 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:22,323 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:22,328 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (Debian based systems)] ****************************************************************************************************************************************************************
+2024-10-19 09:26:22,356 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:22,357 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:22,367 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:22,373 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Upgrade the system packages (Suse based systems)] ******************************************************************************************************************************************************************
+2024-10-19 09:26:22,387 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:22,401 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:22,410 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:22,415 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for RedHat systems] *************************************************************************************************************************************************************************
+2024-10-19 09:26:22,460 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:22,465 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:22,472 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:22,477 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for Debian systems] *************************************************************************************************************************************************************************
+2024-10-19 09:26:22,502 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:22,504 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:22,513 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:22,519 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Set the upgrade status for Suse systems] ***************************************************************************************************************************************************************************
+2024-10-19 09:26:22,545 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:22,546 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:22,554 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:22,560 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Reboot the systems that are upgraded and wait for them to come back online] ****************************************************************************************************************************************
+2024-10-19 09:26:22,590 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:22,603 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:22,612 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:22,618 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to disable swap] *************************************************************************************************************************************************************************************
+2024-10-19 09:26:22,660 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/disable_swap.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:26:22,677 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check if swap is enabled] ******************************************************************************************************************************************************************************************
+2024-10-19 09:26:23,360 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:23,383 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:23,450 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:23,455 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Disable swap if it is enabled] *************************************************************************************************************************************************************************************
+2024-10-19 09:26:23,494 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:23,495 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:23,503 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:23,507 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Remove swap entry from /etc/fstab] *********************************************************************************************************************************************************************************
+2024-10-19 09:26:24,250 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:24,259 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:24,344 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:24,350 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify that swap has been disabled and removed from fstab] *********************************************************************************************************************************************************
+2024-10-19 09:26:24,381 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:24,403 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:24,405 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:24,411 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify if swap is already disabled] ********************************************************************************************************************************************************************************
+2024-10-19 09:26:24,453 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "Swap is already disabled."
+}
+2024-10-19 09:26:24,458 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "Swap is already disabled."
+}
+2024-10-19 09:26:24,484 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "Swap is already disabled."
+}
+2024-10-19 09:26:24,490 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to load required kernel modules] *********************************************************************************************************************************************************************
+2024-10-19 09:26:24,539 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/load_kernel_modules.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:26:24,557 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Load the required kernel modules] **********************************************************************************************************************************************************************************
+2024-10-19 09:26:25,262 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => (item=overlay)
+2024-10-19 09:26:25,272 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => (item=overlay)
+2024-10-19 09:26:25,309 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => (item=overlay)
+2024-10-19 09:26:25,869 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => (item=br_netfilter)
+2024-10-19 09:26:25,876 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => (item=br_netfilter)
+2024-10-19 09:26:25,965 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => (item=br_netfilter)
+2024-10-19 09:26:25,972 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Create /etc/modules-load.d/k8s.conf for the above loaded modules to be persistent] *********************************************************************************************************************************
+2024-10-19 09:26:26,658 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:26,675 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:26,711 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:26,717 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to load required kernel parameters] ******************************************************************************************************************************************************************
+2024-10-19 09:26:26,770 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/load_kernel_parameters.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:26:26,787 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Load the required kernel parameters] *******************************************************************************************************************************************************************************
+2024-10-19 09:26:27,471 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item={'key': 'net.ipv4.ip_forward', 'value': '1'})
+2024-10-19 09:26:27,522 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item={'key': 'net.ipv4.ip_forward', 'value': '1'})
+2024-10-19 09:26:27,618 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item={'key': 'net.ipv4.ip_forward', 'value': '1'})
+2024-10-19 09:26:28,061 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item={'key': 'net.bridge.bridge-nf-call-iptables', 'value': '1'})
+2024-10-19 09:26:28,227 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item={'key': 'net.bridge.bridge-nf-call-iptables', 'value': '1'})
+2024-10-19 09:26:28,293 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item={'key': 'net.bridge.bridge-nf-call-iptables', 'value': '1'})
+2024-10-19 09:26:28,593 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item={'key': 'net.bridge.bridge-nf-call-ip6tables', 'value': '1'})
+2024-10-19 09:26:28,829 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item={'key': 'net.bridge.bridge-nf-call-ip6tables', 'value': '1'})
+2024-10-19 09:26:28,921 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item={'key': 'net.bridge.bridge-nf-call-ip6tables', 'value': '1'})
+2024-10-19 09:26:28,928 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Create /etc/sysctl.d/k8s.conf for above loaded kernel parameters to be persistent] *********************************************************************************************************************************
+2024-10-19 09:26:29,550 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:26:29,568 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:26:29,705 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:26:29,713 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check if runc is already installed] ********************************************************************************************************************************************************************************
+2024-10-19 09:26:30,593 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:30,676 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:30,693 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:30,702 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify about runc installation status] *****************************************************************************************************************************************************************************
+2024-10-19 09:26:30,737 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "runc is already installed."
+}
+2024-10-19 09:26:30,741 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "runc is already installed."
+}
+2024-10-19 09:26:30,760 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "runc is already installed."
+}
+2024-10-19 09:26:30,769 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to download and install runc] ************************************************************************************************************************************************************************
+2024-10-19 09:26:30,788 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:30,804 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:30,817 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:30,823 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check runc version] ************************************************************************************************************************************************************************************************
+2024-10-19 09:26:31,735 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:31,737 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:31,790 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:31,799 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify runc version] ***********************************************************************************************************************************************************************************************
+2024-10-19 09:26:31,839 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": [
+        "runc version 1.1.14",
+        "commit: v1.1.14-0-g2c9f560",
+        "spec: 1.0.2-dev",
+        "go: go1.22.7",
+        "libseccomp: 2.5.2"
+    ]
+}
+2024-10-19 09:26:31,841 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": [
+        "runc version 1.1.14",
+        "commit: v1.1.14-0-g2c9f560",
+        "spec: 1.0.2-dev",
+        "go: go1.22.7",
+        "libseccomp: 2.5.2"
+    ]
+}
+2024-10-19 09:26:31,857 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": [
+        "runc version 1.1.14",
+        "commit: v1.1.14-0-g2c9f560",
+        "spec: 1.0.2-dev",
+        "go: go1.22.7",
+        "libseccomp: 2.5.2"
+    ]
+}
+2024-10-19 09:26:31,863 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check if containerd is already installed] **************************************************************************************************************************************************************************
+2024-10-19 09:26:32,774 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:32,780 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:32,897 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:32,902 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify about containerd installation status] ***********************************************************************************************************************************************************************
+2024-10-19 09:26:32,931 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "Containerd is already installed."
+}
+2024-10-19 09:26:32,940 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "Containerd is already installed."
+}
+2024-10-19 09:26:32,954 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "Containerd is already installed."
+}
+2024-10-19 09:26:32,959 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Include tasks to download and install containerd] ******************************************************************************************************************************************************************
+2024-10-19 09:26:32,976 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:26:32,990 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:26:33,004 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:26:33,010 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check containerd version] ******************************************************************************************************************************************************************************************
+2024-10-19 09:26:33,967 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:26:34,042 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:26:34,068 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:26:34,080 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify containerd version] *****************************************************************************************************************************************************************************************
+2024-10-19 09:26:34,142 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "containerd version is ['containerd containerd.io 1.7.22 7f7fdf5fed64eb6a7caf99b3e12efcf9d60e311c']"
+}
+2024-10-19 09:26:34,155 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "containerd version is ['containerd containerd.io 1.7.22 7f7fdf5fed64eb6a7caf99b3e12efcf9d60e311c']"
+}
+2024-10-19 09:26:34,166 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "containerd version is ['containerd containerd.io 1.7.22 7f7fdf5fed64eb6a7caf99b3e12efcf9d60e311c']"
+}
+2024-10-19 09:26:34,175 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Tasks for RedHat based Distributions to install kubelet, kubeadm and kubectl packages] *****************************************************************************************************************************
+2024-10-19 09:26:34,247 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/prepare_all_the_cluster_nodes/tasks/redhat_tasks.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:26:34,272 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Add k8s rpm repository ( RedHat based systems )] *******************************************************************************************************************************************************************
+2024-10-19 09:26:35,359 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:26:35,374 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:26:35,387 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:26:35,394 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Install kubelet, kubeadm and kubectl packages ( RedHat based systems )] ********************************************************************************************************************************************
+2024-10-19 09:27:43,002 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:27:43,109 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:27:45,066 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:27:45,071 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Tasks for Debian based Distributions to install kubelet, kubeadm and kubectl packages] *****************************************************************************************************************************
+2024-10-19 09:27:45,097 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:27:45,099 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:27:45,110 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:27:45,116 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Tasks for Suse based Distributions to install kubelet, kubeadm and kubectl packages] *******************************************************************************************************************************
+2024-10-19 09:27:45,132 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:27:45,145 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:27:45,155 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:27:45,163 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Enable and start kubelet.service] **********************************************************************************************************************************************************************************
+2024-10-19 09:27:46,901 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:27:46,928 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:27:47,135 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:27:47,141 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Check kubelet service status] **************************************************************************************************************************************************************************************
+2024-10-19 09:27:47,980 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:27:48,047 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:27:48,077 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:27:48,086 p=38414 u=vagrant n=ansible | TASK [prepare_all_the_cluster_nodes : Notify if the kubelet service is enabled] **************************************************************************************************************************************************************************
+2024-10-19 09:27:48,149 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "kubelet service is enabled."
+}
+2024-10-19 09:27:48,151 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "kubelet service is enabled."
+}
+2024-10-19 09:27:48,171 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "kubelet service is enabled."
+}
+2024-10-19 09:27:48,197 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Check if firewalld is active] ******************************************************************************************************************************************************************************************
+2024-10-19 09:27:49,147 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:27:49,178 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:27:49,187 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:27:49,197 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Notify if firewalld is not running] ************************************************************************************************************************************************************************************
+2024-10-19 09:27:49,241 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:27:49,246 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:27:49,259 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:27:49,267 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Notify if firewalld is running] ****************************************************************************************************************************************************************************************
+2024-10-19 09:27:49,318 p=38414 u=vagrant n=ansible | ok: [192.168.252.253] => {
+    "msg": "Firewalld is running. Proceeding with the necessary configuration."
+}
+2024-10-19 09:27:49,331 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "Firewalld is running. Proceeding with the necessary configuration."
+}
+2024-10-19 09:27:49,336 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "Firewalld is running. Proceeding with the necessary configuration."
+}
+2024-10-19 09:27:49,345 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Include tasks to apply firewalld rules for Kubernetes and Calico CNI] **************************************************************************************************************************************************
+2024-10-19 09:27:49,428 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/apply_rules_for_firewalld/tasks/apply_rules.yaml for 192.168.252.253, 192.168.252.39, 192.168.252.56
+2024-10-19 09:27:49,440 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Allow Kubernetes related ports for control plane node] *****************************************************************************************************************************************************************
+2024-10-19 09:27:49,515 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=6443/tcp) 
+2024-10-19 09:27:49,520 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=2379-2380/tcp) 
+2024-10-19 09:27:49,521 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=10250/tcp) 
+2024-10-19 09:27:49,522 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=10256/tcp) 
+2024-10-19 09:27:49,525 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=10257/tcp) 
+2024-10-19 09:27:49,526 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=10259/tcp) 
+2024-10-19 09:27:49,527 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39] => (item=30000-32767/tcp) 
+2024-10-19 09:27:49,529 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=6443/tcp) 
+2024-10-19 09:27:49,531 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:27:49,532 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=2379-2380/tcp) 
+2024-10-19 09:27:49,533 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=10250/tcp) 
+2024-10-19 09:27:49,535 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=10256/tcp) 
+2024-10-19 09:27:49,536 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=10257/tcp) 
+2024-10-19 09:27:49,538 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=10259/tcp) 
+2024-10-19 09:27:49,538 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56] => (item=30000-32767/tcp) 
+2024-10-19 09:27:49,539 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:27:50,250 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=6443/tcp)
+2024-10-19 09:27:50,905 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=2379-2380/tcp)
+2024-10-19 09:27:51,479 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=10250/tcp)
+2024-10-19 09:27:52,146 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=10256/tcp)
+2024-10-19 09:27:52,787 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=10257/tcp)
+2024-10-19 09:27:53,325 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=10259/tcp)
+2024-10-19 09:27:54,006 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=30000-32767/tcp)
+2024-10-19 09:27:54,015 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Allow Kubernetes related ports for worker nodes] ***********************************************************************************************************************************************************************
+2024-10-19 09:27:54,044 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253] => (item=10250/tcp) 
+2024-10-19 09:27:54,047 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253] => (item=10256/tcp) 
+2024-10-19 09:27:54,048 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253] => (item=30000-32767/tcp) 
+2024-10-19 09:27:54,059 p=38414 u=vagrant n=ansible | skipping: [192.168.252.253]
+2024-10-19 09:27:54,969 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=10250/tcp)
+2024-10-19 09:27:55,009 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=10250/tcp)
+2024-10-19 09:27:55,846 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=10256/tcp)
+2024-10-19 09:27:55,894 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=10256/tcp)
+2024-10-19 09:27:56,775 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=30000-32767/tcp)
+2024-10-19 09:27:56,780 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=30000-32767/tcp)
+2024-10-19 09:27:56,788 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Allow calico related ports in all nodes] *******************************************************************************************************************************************************************************
+2024-10-19 09:27:58,189 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=179/tcp)
+2024-10-19 09:27:58,212 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=179/tcp)
+2024-10-19 09:27:58,226 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=179/tcp)
+2024-10-19 09:27:59,357 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=4789/udp)
+2024-10-19 09:27:59,541 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=4789/udp)
+2024-10-19 09:27:59,591 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=4789/udp)
+2024-10-19 09:28:00,637 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=5473/tcp)
+2024-10-19 09:28:00,652 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=5473/tcp)
+2024-10-19 09:28:00,659 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=5473/tcp)
+2024-10-19 09:28:01,828 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=51820/udp)
+2024-10-19 09:28:01,968 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=51820/udp)
+2024-10-19 09:28:01,985 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=51820/udp)
+2024-10-19 09:28:03,005 p=38414 u=vagrant n=ansible | changed: [192.168.252.39] => (item=51821/udp)
+2024-10-19 09:28:03,133 p=38414 u=vagrant n=ansible | changed: [192.168.252.56] => (item=51821/udp)
+2024-10-19 09:28:03,254 p=38414 u=vagrant n=ansible | changed: [192.168.252.253] => (item=51821/udp)
+2024-10-19 09:28:03,263 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Allow IP-in-IP encapsulation for Calico (Protocol 4) in all nodes] *****************************************************************************************************************************************************
+2024-10-19 09:28:04,562 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:28:04,620 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:28:04,655 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:28:04,663 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Fetch k8s cluster's Management Network CIDR] ***************************************************************************************************************************************************************************
+2024-10-19 09:28:04,700 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:28:04,704 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:28:04,721 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:28:04,732 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Add k8s cluster's Management Network CIDR ( 192.168.252.0/24 ) to trusted zone] ****************************************************************************************************************************************
+2024-10-19 09:28:05,853 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:28:05,884 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:28:05,998 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:28:06,006 p=38414 u=vagrant n=ansible | TASK [apply_rules_for_firewalld : Add k8s cluster's Pod Network CIDR ( 10.8.0.0/16 ) to trusted zone] ****************************************************************************************************************************************************
+2024-10-19 09:28:07,140 p=38414 u=vagrant n=ansible | changed: [192.168.252.39]
+2024-10-19 09:28:07,209 p=38414 u=vagrant n=ansible | changed: [192.168.252.56]
+2024-10-19 09:28:07,325 p=38414 u=vagrant n=ansible | changed: [192.168.252.253]
+2024-10-19 09:28:07,347 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : set_fact] ******************************************************************************************************************************************************************************************************
+2024-10-19 09:28:07,389 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:28:07,391 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:07,395 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:07,401 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Include tasks for kubeadm config images pull] ******************************************************************************************************************************************************************
+2024-10-19 09:28:07,433 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:07,444 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:07,456 p=38414 u=vagrant n=ansible | included: /home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/install_and_configure_the_cluster/tasks/kubeadm_config_images_pull.yaml for 192.168.252.253
+2024-10-19 09:28:07,469 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Get the list of Kubernetes config images] **********************************************************************************************************************************************************************
+2024-10-19 09:28:11,041 p=38414 u=vagrant n=ansible | ok: [192.168.252.253]
+2024-10-19 09:28:11,045 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Get the list of pulled images by crictl] ***********************************************************************************************************************************************************************
+2024-10-19 09:28:11,527 p=38414 u=vagrant n=ansible | fatal: [192.168.252.253]: FAILED! => {"changed": false, "cmd": ["crictl", "-r", "unix:///run/containerd/containerd.sock", "images"], "delta": "0:00:00.018012", "end": "2024-10-19 09:28:11.468132", "msg": "non-zero return code", "rc": 1, "start": "2024-10-19 09:28:11.450120", "stderr": "time=\"2024-10-19T09:28:11Z\" level=fatal msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unimplemented desc = unknown service runtime.v1.ImageService\"", "stderr_lines": ["time=\"2024-10-19T09:28:11Z\" level=fatal msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unimplemented desc = unknown service runtime.v1.ImageService\""], "stdout": "", "stdout_lines": []}
+2024-10-19 09:28:11,533 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Include tasks for kubeadm init] ********************************************************************************************************************************************************************************
+2024-10-19 09:28:11,547 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,558 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,564 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Include tasks for creating Kubernetes config for user {{ var_k8s_user }}] **************************************************************************************************************************************
+2024-10-19 09:28:11,580 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,589 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,595 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Checking Kube API server's health (this might take some time).] ************************************************************************************************************************************************
+2024-10-19 09:28:11,609 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,617 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,622 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Include tasks to apply Calico CNI manifest] ********************************************************************************************************************************************************************
+2024-10-19 09:28:11,634 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,644 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,649 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Wait for control-plane to get Ready] ***************************************************************************************************************************************************************************
+2024-10-19 09:28:11,662 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,672 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,677 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Get the status of control-plane node] **************************************************************************************************************************************************************************
+2024-10-19 09:28:11,692 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,701 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,708 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Notify the status of control-plane node] ***********************************************************************************************************************************************************************
+2024-10-19 09:28:11,720 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,730 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,736 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : Create kubeadm token required for joining the worker nodes with the cluster] ***********************************************************************************************************************************
+2024-10-19 09:28:11,750 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,762 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,767 p=38414 u=vagrant n=ansible | TASK [install_and_configure_the_cluster : set_fact] ******************************************************************************************************************************************************************************************************
+2024-10-19 09:28:11,784 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:11,796 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:11,807 p=38414 u=vagrant n=ansible | TASK [join_worker_nodes_to_the_cluster : Check whether the worker node has joined the cluster already] ***************************************************************************************************************************************************
+2024-10-19 09:28:12,378 p=38414 u=vagrant n=ansible | ok: [192.168.252.56]
+2024-10-19 09:28:12,390 p=38414 u=vagrant n=ansible | ok: [192.168.252.39]
+2024-10-19 09:28:12,395 p=38414 u=vagrant n=ansible | TASK [join_worker_nodes_to_the_cluster : Notify about the worker nodes that has joined the cluster already] **********************************************************************************************************************************************
+2024-10-19 09:28:12,418 p=38414 u=vagrant n=ansible | skipping: [192.168.252.39]
+2024-10-19 09:28:12,425 p=38414 u=vagrant n=ansible | skipping: [192.168.252.56]
+2024-10-19 09:28:12,430 p=38414 u=vagrant n=ansible | TASK [join_worker_nodes_to_the_cluster : Notify about the worker nodes that has not joined the cluster yet] **********************************************************************************************************************************************
+2024-10-19 09:28:12,448 p=38414 u=vagrant n=ansible | ok: [192.168.252.39] => {
+    "msg": "The worker node 192.168.252.39 has not joined the cluster yet, Proceeding to join"
+}
+2024-10-19 09:28:12,462 p=38414 u=vagrant n=ansible | ok: [192.168.252.56] => {
+    "msg": "The worker node 192.168.252.56 has not joined the cluster yet, Proceeding to join"
+}
+2024-10-19 09:28:12,469 p=38414 u=vagrant n=ansible | TASK [join_worker_nodes_to_the_cluster : Join the available worker nodes with the cluster] ***************************************************************************************************************************************************************
+2024-10-19 09:28:12,492 p=38414 u=vagrant n=ansible | fatal: [192.168.252.39]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible.vars.hostvars.HostVarsVars object' has no attribute 'var_kubeadm_join_command'. 'ansible.vars.hostvars.HostVarsVars object' has no attribute 'var_kubeadm_join_command'\n\nThe error appears to be in '/home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/join_worker_nodes_to_the_cluster/tasks/main.yaml': line 21, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Join the available worker nodes with the cluster\n  ^ here\n"}
+2024-10-19 09:28:12,512 p=38414 u=vagrant n=ansible | fatal: [192.168.252.56]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible.vars.hostvars.HostVarsVars object' has no attribute 'var_kubeadm_join_command'. 'ansible.vars.hostvars.HostVarsVars object' has no attribute 'var_kubeadm_join_command'\n\nThe error appears to be in '/home/vagrant/senior_devops_engineer_task/ansible/scripts/inst-k8s-ansible/roles/join_worker_nodes_to_the_cluster/tasks/main.yaml': line 21, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Join the available worker nodes with the cluster\n  ^ here\n"}
+2024-10-19 09:28:12,516 p=38414 u=vagrant n=ansible | PLAY RECAP ***********************************************************************************************************************************************************************************************************************************************
+2024-10-19 09:28:12,516 p=38414 u=vagrant n=ansible | 192.168.252.253            : ok=49   changed=10   unreachable=0    failed=1    skipped=13   rescued=0    ignored=0   
+2024-10-19 09:28:12,516 p=38414 u=vagrant n=ansible | 192.168.252.39             : ok=40   changed=10   unreachable=0    failed=1    skipped=25   rescued=0    ignored=0   
+2024-10-19 09:28:12,516 p=38414 u=vagrant n=ansible | 192.168.252.56             : ok=40   changed=10   unreachable=0    failed=1    skipped=25   rescued=0    ignored=0   
