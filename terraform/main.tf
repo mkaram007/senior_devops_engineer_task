@@ -19,6 +19,20 @@ resource "virtualbox_vm" "node-01" {
     type           = "bridged"
     host_interface = "Realtek RTL8852BE WiFi 6 802.11ax PCIe Adapter"
   }
+  connection {
+    type = "ssh"
+    host = self.network_adapter[0].ipv4_address
+    user = "vagrant"
+    private_key = file("C:\\Users\\mkaram\\.vagrant.d\\insecure_private_key")
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo nmcli con add con-name tf-con type ethernet ipv4.method manual ipv4.addresses 192.168.252.10/24 ipv4.gateway 192.168.252.159 ipv4.dns 8.8.8.8",
+      "sudo nmcli con up tf-con"
+
+    ]
+  }
+
 
 }
 
@@ -33,6 +47,20 @@ resource "virtualbox_vm" "node-02" {
     type           = "bridged"
     host_interface = "Realtek RTL8852BE WiFi 6 802.11ax PCIe Adapter"
   }
+  connection {
+    type = "ssh"
+    host = self.network_adapter[0].ipv4_address
+    user = "vagrant"
+    private_key = file("C:\\Users\\mkaram\\.vagrant.d\\insecure_private_key")
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo nmcli con add con-name tf-con type ethernet ipv4.method manual ipv4.addresses 192.168.252.50/24 ipv4.gateway 192.168.252.159 ipv4.dns 8.8.8.8",
+      "sudo nmcli con up tf-con"
+
+    ]
+  }
+
 }
 
 resource "virtualbox_vm" "node-03" {
