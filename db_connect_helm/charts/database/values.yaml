@@ -1,0 +1,5 @@
+service:
+  port: 5432
+  targetPort: 5432
+  type: NodePort
+  containerPort: 5432

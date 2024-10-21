@@ -1,0 +1,19 @@
+spring:
+  ingress:
+    enabled: false
+
+frontend:
+  ingress:
+    enabled: false
+
+ingress:
+  hosts:
+    - host:
+        domain: frontend.minikube.local
+        chart: frontend
+    - host:
+        domain: spring.minikube.local
+        chart: spring
+
+service:
+  port: 80  
