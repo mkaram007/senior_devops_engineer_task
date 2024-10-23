@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-database-database-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database-database-deployment
+  template:
+    metadata:
+      labels:
+        app: database-database-deployment
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              key: postgres-username
+              name: dev-database-database-secret
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: dev-database-database-secret
+        - name: POSTGRES_DB
+          value: java_db
+        image: postgres:13.16
+        name: postgres
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - mountPath: /var/postgresql/data/pgdata
+          name: database-database-volume
+      volumes:
+      - name: database-database-volume
+        persistentVolumeClaim:
+          claimName: dev-database-database-pvc

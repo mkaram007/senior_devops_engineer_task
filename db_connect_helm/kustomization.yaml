@@ -1,0 +1,15 @@
+# kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+- name: spring 
+  repo: my-chartmuseum
+  releaseName: spring
+    #  version: 0.1.0
+- name: database
+  repo: my-chartmuseum
+  releaseName: database
+
+  
+namePrefix: dev-
