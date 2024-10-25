@@ -9,6 +9,7 @@ spec:
     - protocol: "TCP"
       port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
+      nodePort: 32102
   selector:
     app: {{ .Release.Name }}-{{ .Chart.Name }}-deployment
- # type: NodePort
+  type: NodePort

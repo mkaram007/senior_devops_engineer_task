@@ -15,6 +15,8 @@ spec:
       containers:
         - image: postgres:13.16
           env:
+          - name: POSTGRES_DB
+            value: java_db
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
@@ -25,8 +27,6 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-{{ .Chart.Name }}-secret
                 key: postgres-password
-          - name: POSTGRES_DB
-            value: java_db
           name: postgres
           ports:
             - name: postgres

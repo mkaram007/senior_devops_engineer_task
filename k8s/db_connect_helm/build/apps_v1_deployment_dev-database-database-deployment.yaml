@@ -14,6 +14,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: POSTGRES_DB
+          value: java_db
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
@@ -24,8 +26,6 @@ spec:
             secretKeyRef:
               key: postgres-password
               name: dev-database-database-secret
-        - name: POSTGRES_DB
-          value: java_db
         image: postgres:13.16
         name: postgres
         ports:

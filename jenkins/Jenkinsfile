@@ -1,0 +1,65 @@
+pipeline {
+    agent any;
+    stages {
+        stage ('checkout') {
+            steps {
+                script {
+                    if (!fileExists ('DB_CONNECT')) {
+                        sh 'mkdir DB_CONNECT'
+                    }
+                    dir ('DB_CONNECT') {
+                        git branch: 'develop', credentialsId: 'github', url: 'https://github.com/mkaram007/DB_CONNECT'
+                    }
+                }
+            }
+        }
+        stage ('test') {
+            steps {
+                script {
+                    dir('DB_CONNECT') {
+                        sh 'mvn test'
+                    }
+                }
+            }
+        }
+        stage ('build') {
+            steps {
+                script {
+                    dir('DB_CONNECT') {
+                        sh 'mvn clean install'
+                    }
+                }
+            }
+        }
+        stage ('build-k8s-image') {
+            steps {
+                script {
+                    dir('DB_CONNECT') {
+                        sh 'docker build -t docker.io/mkaram007/my-tools:db_connect .'
+                        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                            sh 'echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin'
+                            sh 'docker push docker.io/mkaram007/my-tools:db_connect'
+                        }
+                    }
+                }
+            }
+        }
+        stage ('Deploy') {
+            steps {
+                script {
+                    dir('DB_CONNECT') {
+                        withCredentials([usernamePassword(credentialsId: 'k8s-user', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                            def remote = [:]
+                            remote.name = 'k8s-master'
+                            remote.host = '192.168.252.151'
+                            remote.user = USERNAME
+                            remote.password = PASSWORD
+                            remote.allowAnyHosts = true
+                            sshCommand remote: remote, command: 'cd /home/karam/senior_devops_engineer_task/k8s/db_connect_helm; bash ./restart-db-connect.sh'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

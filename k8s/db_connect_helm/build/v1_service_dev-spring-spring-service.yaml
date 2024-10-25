@@ -6,8 +6,10 @@ metadata:
   name: dev-spring-spring-service
 spec:
   ports:
-  - port: 8080
+  - nodePort: 32102
+    port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: spring-spring-deployment
+  type: NodePort
