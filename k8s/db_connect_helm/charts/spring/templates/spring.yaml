@@ -9,6 +9,8 @@ spec:
       app: {{ include "spring.fullname" . }}-deployment 
   template:
     metadata:
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
       labels:
         app: {{ include "spring.fullname" . }}-deployment
     spec:

@@ -6,7 +6,7 @@ data:
     spring.ldap.embedded.port=8389  
     spring.application.name=DB_CONNECT
     # spring.datasource.url=jdbc:mysql://localhost:3306/db
-    spring.datasource.url=jdbc:postgresql://dev-database-database-service:5432/java_db
+    spring.datasource.url=jdbc:postgresql://database-database-service:5432/java_db
     spring.datasource.username=karam
     spring.datasource.password=root
     spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect

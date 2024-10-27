@@ -25,9 +25,9 @@ entries:
         url: https://keybase.io/hashicorp/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.20.0
-    created: "2024-10-25T17:48:15.523279578+03:00"
+    created: "2024-10-27T13:05:00.132814884+03:00"
     description: Official HashiCorp Consul Chart
-    digest: 6710a7fd7f898de4c0d8bba9816e555a559d61a7437bc8f53d99576d326393a7
+    digest: 2d143fdeaadcff044d70a99d4e724a214b7a11be985fc7bc6ad5596bf84767f6
     home: https://www.consul.io
     icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
     kubeVersion: '>=1.22.0-0'
@@ -41,23 +41,164 @@ entries:
   database:
   - apiVersion: v2
     appVersion: "13.16"
-    created: "2024-10-25T17:48:15.523406106+03:00"
+    created: "2024-10-27T13:05:00.133215423+03:00"
     description: A Helm chart for DB_CONNECTION Database Postgresql 13.16
-    digest: fe97cabdcdee723ea54239ee63a1cfa055c24a44ae46e9b9498643b4af2757af
+    digest: 1f8688cdc0ae0be629d0a78a2284ab13719d8a67dd15cd15c8bc92ae9272636e
     name: database
     type: application
     urls:
     - database-1.tgz
     version: "1"
+  grafana:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 11.2.2-security-01
+    created: "2024-10-27T13:05:00.136483212+03:00"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 64cef28c4e1a3839c64e3f113914aaa92ae9d29c8762b09a2a1d74a242de3a83
+    home: https://grafana.com
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    - email: github@jkroepke.de
+      name: jkroepke
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - grafana-8.5.8.tgz
+    version: 8.5.8
+  prometheus:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus/prometheus
+    apiVersion: v2
+    appVersion: v2.54.1
+    created: "2024-10-27T13:05:00.150649179+03:00"
+    dependencies:
+    - condition: alertmanager.enabled
+      name: alertmanager
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.12.*
+    - condition: kube-state-metrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.25.*
+    - condition: prometheus-node-exporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.39.*
+    - condition: prometheus-pushgateway.enabled
+      name: prometheus-pushgateway
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 2.14.*
+    description: Prometheus is a monitoring system and time series database.
+    digest: 80f0d207bbfb37336b1b0a3fd6c7a60b42b8292eeb991c14a612b5759de01f95
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    - prometheus
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: naseem@transit.app
+      name: naseemkullah
+    - email: rootsandtrees@posteo.de
+      name: zeritti
+    name: prometheus
+    sources:
+    - https://github.com/prometheus/alertmanager
+    - https://github.com/prometheus/prometheus
+    - https://github.com/prometheus/pushgateway
+    - https://github.com/prometheus/node_exporter
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - prometheus-25.27.0.tgz
+    version: 25.27.0
+  rabbitmq-cluster-operator:
+  - annotations:
+      category: Infrastructure
+      images: |
+        - name: rabbitmq
+          image: docker.io/bitnami/rabbitmq:4.0.2-debian-12-r0
+        - name: rabbitmq-cluster-operator
+          image: docker.io/bitnami/rabbitmq-cluster-operator:2.11.0-debian-12-r0
+        - name: rmq-default-credential-updater
+          image: docker.io/bitnami/rmq-default-credential-updater:1.0.4-debian-12-r29
+        - name: rmq-messaging-topology-operator
+          image: docker.io/bitnami/rmq-messaging-topology-operator:1.15.0-debian-12-r0
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 2.11.0
+    created: "2024-10-27T13:05:00.16927616+03:00"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: The RabbitMQ Cluster Kubernetes Operator automates provisioning,
+      management, and operations of RabbitMQ clusters running on Kubernetes.
+    digest: 01a62dd1b7867bdcd4a8da3a43dac576b67ca029d31f53f21cc8f1e82ba73cb7
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/rabbitmq-cluster-operator/img/rabbitmq-cluster-operator-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - operator
+    - infrastructure
+    - message queue
+    - AMQP
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - name: Broadcom, Inc. All Rights Reserved.
+      url: https://github.com/bitnami/charts
+    name: rabbitmq-cluster-operator
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/rabbitmq-cluster-operator
+    urls:
+    - rabbitmq-cluster-operator-4.3.25.tgz
+    version: 4.3.25
   spring:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2024-10-25T17:48:15.523552418+03:00"
+    created: "2024-10-27T13:05:00.170386959+03:00"
     description: A Helm chart for DB_CONNECT Backend 1.0
-    digest: 27b8ae90c488df6f7efb25a401129ea00534aee11aa286dd438f826677b922eb
+    digest: 7882cbced4bd0bd6cc31c53a37a952864e33057e1218a6d831fd91f5a88f350a
     name: spring
     type: application
     urls:
     - spring-1.tgz
     version: "1"
-generated: "2024-10-25T17:48:15.512964573+03:00"
+generated: "2024-10-27T13:05:00.115421745+03:00"

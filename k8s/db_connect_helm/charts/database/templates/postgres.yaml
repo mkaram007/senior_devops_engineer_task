@@ -9,6 +9,8 @@ spec:
       app: {{ .Release.Name }}-{{ .Chart.Name }}-deployment
   template:
     metadata:
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
       labels:
         app: {{ .Release.Name }}-{{ .Chart.Name }}-deployment
     spec:
