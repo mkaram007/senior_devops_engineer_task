@@ -9,26 +9,52 @@ spec:
       app: {{ .Release.Name }}-{{ .Chart.Name }}-deployment
   template:
     metadata:
-      annotations:
-        consul.hashicorp.com/connect-inject: 'true'
       labels:
         app: {{ .Release.Name }}-{{ .Chart.Name }}-deployment
+      annotations:
+        consul.hashicorp.com/connect-inject: 'true'
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-status: "update"
+        vault.hashicorp.com/agent-inject-secret-database-secret: "secret/database-secret"
+        vault.hashicorp.com/agent-inject-template-database-secret: |
+          {{`{{- with secret "secret/database-secret" -}}
+          username={{ .Data.data.username }}
+          password={{ .Data.data.password }}
+          {{- end }}`}}
+        vault.hashicorp.com/role: "vault-role"
     spec:
+      serviceAccountName: vault-serviceaccount
+      volumes:
+        - name: vault-secret
+          emptyDir: {}
+        - name: pgpass-volume
+          emptyDir: {}  # Shared volume for .pgpass file
+
+      # Init container to create .pgpass file
+      initContainers:
+        - name: init-pgpass
+          image: busybox
+          volumeMounts:
+            - name: pgpass-volume
+              mountPath: /pgpass
+            - name: vault-secret
+              mountPath: /vault/secret
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              # Extract username and password from Vault secret file
+              USERNAME=$(grep 'username' /vault/secret/database-secret | cut -d' ' -f2)
+              PASSWORD=$(grep 'password' /vault/secret/database-secret | cut -d' ' -f2)
+              echo "*:*:*:${USERNAME}:${PASSWORD}" > /pgpass/.pgpass
+              chmod 600 /pgpass/.pgpass
+
       containers:
         - image: postgres:13.16
           env:
           - name: POSTGRES_DB
             value: java_db
-          - name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-{{ .Chart.Name }}-secret
-                key: postgres-username
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-{{ .Chart.Name }}-secret
-                key: postgres-password
+          - name: PGPASSFILE
+            value: "/pgpass/.pgpass"  # Path to the .pgpass file
           name: postgres
           ports:
             - name: postgres
@@ -36,7 +62,15 @@ spec:
           volumeMounts:
             - name: {{ .Release.Name }}-{{ .Chart.Name }}-volume
               mountPath: /var/postgresql/data/pgdata
+            - name: vault-secret
+              mountPath: /vault/secret  # Mount the Vault secret
+            - name: pgpass-volume
+              mountPath: /pgpass         # Mount the shared volume for .pgpass
       volumes:
         - name: {{ .Release.Name }}-{{ .Chart.Name }}-volume
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-{{ .Chart.Name }}-pvc
+        - name: vault-secret
+          emptyDir: {}
+        - name: pgpass-volume
+          emptyDir: {}  # Shared volume for .pgpass file
