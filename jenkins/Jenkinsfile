@@ -36,9 +36,14 @@ pipeline {
                 script {
                     dir('DB_CONNECT') {
                         sh 'docker build -t docker.io/mkaram007/my-tools:db_connect .'
+                        sh 'docker tag docker.io/mkaram007/my-tools:db_connect privateRegsitry.local/my-tools/db-connect:1.0'
                         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                             sh 'echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin'
                             sh 'docker push docker.io/mkaram007/my-tools:db_connect'
+                        }
+                        withCredentials([usernamePassword(credentialsId: 'privateRegistry', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                            sh 'echo ${PASSWORD} | docker login privateRegistry.local -u ${USERNAME} --password-stdin'
+                            sh 'docker push privateRegistry.local/my-tools/db_connect:1.0'
                         }
                     }
                 }
