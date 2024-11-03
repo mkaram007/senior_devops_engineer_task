@@ -1,6 +1,0 @@
-apiVersion: v2
-name: database
-appVersion: "13.16"
-description: A Helm chart for DB_CONNECTION Database Postgresql 13.16
-version: 1.0
-type: application
