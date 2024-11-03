@@ -51,10 +51,10 @@ spec:
       containers:
         - image: postgres:13.16
           env:
-          - name: POSTGRES_DB
-            value: java_db
           - name: PGPASSFILE
             value: "/pgpass/.pgpass"  # Path to the .pgpass file
+          - name: POSTGRES_DB
+            value: java_db
           name: postgres
           ports:
             - name: postgres
