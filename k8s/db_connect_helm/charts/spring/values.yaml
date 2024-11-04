@@ -1,6 +1,6 @@
 image:
-  repository: docker.io/mkaram007/my-tools
-  tag: "db_connect"
+  repository: privateRegistry/my-tools/db_connect
+  tag: "1.0"
 
 service:
   containerPort: 8080
@@ -13,8 +13,8 @@ database:
   
 secret:
   postgres_uri:
-    username: karam
-    password: root
+    username: <DB_USERNAME>
+    password: <DB_PASSWORD>
     dbChartName: database
     port: 5432
     dbConnection: db-connect

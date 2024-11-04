@@ -208,7 +208,7 @@ config:
   datasource:
     # Specify one of both datasource or datasourceSecret
     host: 'database-database-service.db-connect.svc'
-    user: karam
+    user: <DB_USERNAME>
     # Specify userFile if DB username is stored in a file.
     # For example, to use with vault-injector from Hashicorp
     userFile: ''
@@ -218,7 +218,7 @@ config:
     # User key inside secret
     #  key:
     # Only one of password, passwordFile, passwordSecret and pgpassfile can be specified
-    password: root
+    password: <DB_PASSWORD>
     # Specify passwordFile if DB password is stored in a file.
     # For example, to use with vault-injector from Hashicorp
     passwordFile: ''

@@ -4,8 +4,8 @@ serviceMonitor:
 config:
   datasource:
     host: database-database-service.db-connect.svc
-    user: karam
-    password: root
+    user: <DB_USERNAME>
+    password: <DB_PASSWORD>
     database: java_db
     
 resources: 
